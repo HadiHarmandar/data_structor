@@ -9,6 +9,9 @@ public class SinglyLinkedListApp {
             myList.add(i);
         }
         myList.printNodes();
+        myList.deleteById(9);
+        myList.printNodes();
+
 
     }
 }

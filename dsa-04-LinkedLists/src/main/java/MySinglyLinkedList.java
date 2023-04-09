@@ -51,6 +51,47 @@ public class MySinglyLinkedList {
 
     }
 
+    void deleteById2(int id) {
+        if (isEmpty()) {
+            System.out.println("List is empty");
+        }
+        Node prev = head;
+        Node current = head;
+        while (current != null) {
+            if (current.id == id) {
+                if (current == head) {
+                    head = current.next;
+                    current.next = null;
+                } else if (current == tail) {
+                    tail = prev;
+                    prev.next = null;
+                } else {
+                    prev.next = current.next;
+                    current.next = null;
+                }
+                size--;
+            }
+            prev = current;
+            current = current.next;
+        }
+
+    }
+
+    int indexOf(int id) {
+        if (isEmpty()) return -1;
+        int position = 0;
+        // iterate through the list
+        Node current = head; // set my current with the starting element
+        while (current != null) {
+            if (current.id == id) return position;
+            position++;
+            current = current.next;
+        }
+        return -1;
+    }
+
+
+
     void printNodes() {
         Node current = head;
         while (current != null) {
