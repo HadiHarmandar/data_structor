@@ -104,4 +104,60 @@ public class MySinglyLinkedList {
         }
     }
 
+    void addFirst(int data) {
+        Node node = new Node(data);
+        if (isEmpty()) {
+            head = tail = node;
+        } else {
+            node.next = head;
+            head = node;
+        }
+        size++;
+    }
+
+    int getKthItemFromLast(int k) {
+        // create two pointers
+        Node p1 = head;
+        Node p2 = head;
+        // move p2 (k - 1) times
+        for (int i = 0; i < k - 1; i++) {
+            p2 = p2.next;
+        }
+        // move both pointers until p2 hits the last element
+        while (p2.next != null) {
+            p1 = p1.next;
+            p2 = p2.next;
+        }
+        // p1 is on the Kth element from the list
+        return p1.id;
+    }
+
+    void removeKthItemFromLast(int k) {
+        Node p1 = head;
+        Node p2 = head;
+        Node prev = head;
+        for (int i = 0; i < k - 1; i++) {
+            p2 = p2.next;
+        }
+        while (p2.next != null) {
+            prev = p1;
+            p1 = p1.next;
+            p2 = p2.next;
+        }
+        // Do delete operation
+        if (p1 == head) {
+            head = p1.next;
+            p1.next = null;
+            size--;
+        } else if (p1 == tail) {
+            tail = prev;
+            prev.next = null;
+            size--;
+        } else {
+            prev.next = p1.next;
+            p1.next = null;
+            size--;
+        }
+    }
+
 }
